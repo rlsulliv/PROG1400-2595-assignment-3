@@ -3,12 +3,12 @@ package Classes;
 import GUI.*;
 import javax.swing.*;
 
-public class Cleric extends Character {
+public class Cleric extends PlayerCharacter {
     private ImageIcon clericPic;
 
     //Constructor
-    public Cleric(String name, int hitPoints, int defense, int agility, int baseAttack) {
-        super(name, hitPoints, defense, agility, baseAttack);
+    public Cleric(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
+        super(name, hitPoints, defense, agility, baseAttack, weapon);
 
         clericPic = new ImageIcon(this.getClass().getResource("/Images/dwarf.png"));
     }

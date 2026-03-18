@@ -1,19 +1,16 @@
 package Classes;
 
-public class Monster {
-    private String name;
+import javax.swing.*;
+
+public class Monster extends Character{
 
 //    Constructor
-    public Monster(String name) {
-        this.setName(name);
+public Monster(String name, int hitPoints, int defense, int agility, int baseAttack) {
+    super(name, hitPoints, defense, agility, baseAttack);
+}
+
+    public String getCharacterInformString() {
+        return "Monsters are scary!";
     }
 
-//    Getters & Setters:
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

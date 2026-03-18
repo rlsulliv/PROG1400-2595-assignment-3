@@ -3,12 +3,12 @@ package Classes;
 import GUI.*;
 import javax.swing.*;
 
-public class Wizard extends Character {
+public class Wizard extends PlayerCharacter {
     private ImageIcon wizardPic;
 
     //Constructors
-    public Wizard(String name, int hitPoints, int defense, int agility, int baseAttack) {
-        super(name, hitPoints, defense, agility, baseAttack);
+    public Wizard(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
+        super(name, hitPoints, defense, agility, baseAttack, weapon);
 
         //Set image for this shape
         wizardPic = new ImageIcon(this.getClass().getResource("/Images/wizard.png"));

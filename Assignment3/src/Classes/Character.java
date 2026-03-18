@@ -6,7 +6,6 @@ public abstract class Character {
 
     //Declare properties of ANY shape
     private String name;
-    private Weapon weapon;
     private int baseAttack;
     private int defense;
     private int agility;
@@ -28,14 +27,6 @@ public abstract class Character {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
     }
 
     public int getBaseAttack() {
@@ -75,8 +66,6 @@ public abstract class Character {
 
     @Override
     public String toString() {
-        return "My name is " + name + ". My weapon is " + (weapon != null ? weapon.getWeaponInformString() : "none") + ".";
+        return "My name is " + name + ".";
     }
-
-    public abstract String getWeaponInformString();
 }

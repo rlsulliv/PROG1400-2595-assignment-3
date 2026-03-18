@@ -3,12 +3,12 @@ package Classes;
 import GUI.*;
 import javax.swing.*;
 
-public class Warrior extends Character {
+public class Warrior extends PlayerCharacter {
     private ImageIcon warriorPic;
 
     //Constructors
-    public Warrior(String name, int hitPoints, int defense, int agility, int baseAttack) {
-        super(name, hitPoints, defense, agility, baseAttack);
+    public Warrior(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
+        super(name, hitPoints, defense, agility, baseAttack, weapon);
         warriorPic = new ImageIcon(this.getClass().getResource("/Images/fighter.png"));
     }
 

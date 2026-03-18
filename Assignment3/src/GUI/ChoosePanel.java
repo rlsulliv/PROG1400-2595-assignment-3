@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class ChoosePanel extends JPanel {
     private JLabel chooseLabel;
@@ -9,41 +10,44 @@ public class ChoosePanel extends JPanel {
     private JTextField enterNameField;
     private JLabel characterTypeLabel;
 
-    private JRadioButton warriorBut;
-    private JRadioButton wizardBut;
-    private JRadioButton clericBut;
+    private static JRadioButton warriorBut;
+    private static JRadioButton wizardBut;
+    private static JRadioButton clericBut;
 
     private JTextArea infoCharArea;
 
     private JLabel selectWeaponLabel;
 
-    private JRadioButton daggerBut;
-    private JRadioButton swordBut;
-    private JRadioButton hammerBut;
+    private static JRadioButton daggerBut;
+    private static JRadioButton swordBut;
+    private static JRadioButton hammerBut;
 
     private JTextArea infoWeaponArea;
 
     private JLabel characterStatsLabel;
     private JLabel hitPointsLabel;
-    private JTextField hitPointsField;
+    private static JTextField hitPointsField;
     private JLabel defenceLabel;
-    private JTextField defenceField;
+    private static JTextField defenceField;
     private JLabel agilityLabel;
-    private JTextField agilityField;
+    private static JTextField agilityField;
     private JLabel baseAttackLabel;
-    private JTextField baseAttackField;
+    private static JTextField baseAttackField;
 
     private JLabel weaponStats;
     private JLabel attackModLabel;
-    private JTextField attackModField;
+    private static JTextField attackModField;
     private JLabel weightLabel;
-    private JTextField weightField;
+    private static JTextField weightField;
 
     private JButton rerollBut;
     private JButton startBattleBut;
 
     public JButton getStartBattleBut() {
         return startBattleBut;
+    }
+    public JButton getRerollBut() {
+        return rerollBut;
     }
 
     public ChoosePanel() {
@@ -212,7 +216,7 @@ public class ChoosePanel extends JPanel {
         startBattleBut.setFont(myFont);
         startBattleBut.setBounds(490, 540, 200, 40);
 
-        // ── Add all components ────────────────────────────────────────────────
+        // ===== Add all components =======================================
         add(chooseLabel);
         add(enterNameLabel);
         add(enterNameField);
@@ -242,5 +246,68 @@ public class ChoosePanel extends JPanel {
         add(weightField);
         add(rerollBut);
         add(startBattleBut);
+
+        rollStats();
+        rerollBut.addActionListener(e -> rollStats());
+    }
+
+    // [0]=HP, [1]=Defense, [2]=Agility, [3]=BaseAttack, [4]=WeaponAttack, [5]=WeaponWeight
+    public static int[] getTextFieldsData() {
+        int[] stats = {
+                Integer.parseInt(hitPointsField.getText()),
+                Integer.parseInt(defenceField.getText()),
+                Integer.parseInt(agilityField.getText()),
+                Integer.parseInt(baseAttackField.getText()),
+                Integer.parseInt(attackModField.getText()),
+                Integer.parseInt(weightField.getText())};
+        return stats;
+    }
+
+    public static String getCharacterType() {
+        if (warriorBut.isSelected()) return "Warrior";
+        else if (wizardBut.isSelected()) return "Wizard";
+        else if (clericBut.isSelected()) return "Cleric";
+        else return "Unknown";
+    }
+
+    public static String getWeaponType(){
+        if (daggerBut.isSelected()) return "Dagger";
+        else if (swordBut.isSelected()) return "Sword";
+        else if (hammerBut.isSelected()) return "Hammer";
+        else return "Unknown";
+    }
+
+    static Random randomInt = new Random();
+
+    public void rollStats(){
+        int hp = 50 + randomInt.nextInt(101);
+        int defence = 5 + randomInt.nextInt(31);
+        int agility = 5 + randomInt.nextInt(31);
+        int baseAtt = 5 + randomInt.nextInt(31);
+        int attackMod = randomInt.nextInt(16);
+        int weight = 1 + randomInt.nextInt(20);
+
+        hitPointsField.setText(String.valueOf(hp));
+        defenceField.setText(String.valueOf(defence));
+        agilityField.setText(String.valueOf(agility));
+        baseAttackField.setText(String.valueOf(baseAtt));
+        attackModField.setText(String.valueOf(attackMod));
+        weightField.setText(String.valueOf(weight));
+    }
+    private static String[] monsterNames = {"Goblin", "Orc", "Dragon", "Skeleton", "Troll"};
+    private static String monsterName = monsterNames[randomInt.nextInt(monsterNames.length)];
+    private static int[] monsterStats = new int[]{
+            30 + randomInt.nextInt(71),
+            3 + randomInt.nextInt(21),
+            3 + randomInt.nextInt(21),
+            3 + randomInt.nextInt(21)
+    };
+
+    public static int[] getSelectMonster() {
+        return monsterStats;
+    }
+
+    public static String getMonsterName() {
+        return monsterName;
     }
 }
