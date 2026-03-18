@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         //Set Frame Properties
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(800, 800);
         setTitle("DND Game");
         setLayout(new CardLayout());
 

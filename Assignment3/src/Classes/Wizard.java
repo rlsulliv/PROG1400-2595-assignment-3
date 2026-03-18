@@ -52,10 +52,10 @@ public class Wizard extends PlayerCharacter {
                 monsStats[3]);
     }
 
-    @Override
-    public String getWeaponInformString() {
-        return null;
-    }
+//    @Override
+//    public String getWeaponInformString() {
+//        return null;
+//    }
 
     @Override
     public String getCharacterInformString() {
