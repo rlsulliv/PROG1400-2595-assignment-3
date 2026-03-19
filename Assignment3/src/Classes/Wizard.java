@@ -4,17 +4,17 @@ import GUI.*;
 import javax.swing.*;
 
 public class Wizard extends PlayerCharacter {
-    private ImageIcon wizardPic;
+    private static ImageIcon wizardPic;
 
     //Constructors
     public Wizard(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
         super(name, hitPoints, defense, agility, baseAttack, weapon);
 
         //Set image for this shape
-        wizardPic = new ImageIcon(this.getClass().getResource("/Images/wizard.png"));
+        wizardPic = new ImageIcon(this.getClass().getResource("/images/wizard.png"));
     }
 
-    public ImageIcon getWizardPic() {
+    public static ImageIcon getWizardPic() {
         return wizardPic;
     }
 
@@ -57,8 +57,7 @@ public class Wizard extends PlayerCharacter {
 //        return null;
 //    }
 
-    @Override
-    public String getCharacterInformString() {
+    public static String getCharacterInformString() {
         return "Wizards are usually elf. Have higher hit points but low defense ";
     }
 

@@ -1,8 +1,13 @@
 package GUI;
 
+import Classes.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+
+import static Classes.Sword.getSwordPic;
+
 
 public class ChoosePanel extends JPanel {
     private JLabel chooseLabel;
@@ -43,6 +48,9 @@ public class ChoosePanel extends JPanel {
     private JButton rerollBut;
     private JButton startBattleBut;
 
+    private JLabel characterImageLabel;
+    private JLabel weaponImageLabel;
+
     public JButton getStartBattleBut() {
         return startBattleBut;
     }
@@ -56,12 +64,11 @@ public class ChoosePanel extends JPanel {
 
         setLayout(null);
         setBackground(new Color(128, 220, 220));
-        setVisible(true);
 
         chooseLabel = new JLabel("Character Generator");
         chooseLabel.setFont(myFont);
         chooseLabel.setForeground(new Color(128, 0, 128));
-        chooseLabel.setBounds(250, 20, 400, 40);
+        chooseLabel.setBounds(300, 20, 400, 40);
 
         enterNameLabel = new JLabel("Enter Name");
         enterNameLabel.setBounds(50, 100, 150, 30);
@@ -121,13 +128,13 @@ public class ChoosePanel extends JPanel {
         swordBut = new JRadioButton("Sword");
         swordBut.setFont(myFont);
         swordBut.setForeground(new Color(128, 0, 128));
-        swordBut.setBounds(50, 495, 150, 30);
+        swordBut.setBounds(50, 490, 150, 30);
         swordBut.setBackground(new Color(128, 220, 220));
 
         hammerBut = new JRadioButton("Hammer");
         hammerBut.setFont(myFont);
         hammerBut.setForeground(new Color(128, 0, 128));
-        hammerBut.setBounds(50, 540, 150, 30);
+        hammerBut.setBounds(50, 530, 150, 30);
         hammerBut.setBackground(new Color(128, 220, 220));
 
         ButtonGroup classGroupTwo = new ButtonGroup();
@@ -136,87 +143,94 @@ public class ChoosePanel extends JPanel {
         classGroupTwo.add(hammerBut);
 
         infoWeaponArea = new JTextArea();
-        infoWeaponArea.setBounds(50, 580, 350, 80);
+        infoWeaponArea.setBounds(50, 570, 350, 180);
         infoWeaponArea.setEditable(false);
         infoWeaponArea.setLineWrap(true);
         infoWeaponArea.setWrapStyleWord(true);
         infoWeaponArea.setForeground(new Color(128, 0, 128));
         infoWeaponArea.setFont(myFont);
 
+        // ===== IMAGE =====
+        characterImageLabel = new JLabel();
+        characterImageLabel.setBounds(300, 180, 100, 100);
+        weaponImageLabel = new JLabel();
+        weaponImageLabel.setBounds(300, 450, 100, 100);
+
+        // ===== CHARACTER STATS =====
         characterStatsLabel = new JLabel("Character Stats");
         characterStatsLabel.setForeground(new Color(128, 0, 128));
         characterStatsLabel.setFont(myFont);
-        characterStatsLabel.setBounds(500, 150, 200, 30);
+        characterStatsLabel.setBounds(650, 150, 250, 30);
 
-        // ── Fixed widths on right-side labels so text doesn't get cut off ────
         hitPointsLabel = new JLabel("Hit Points");
         hitPointsLabel.setForeground(new Color(128, 0, 128));
         hitPointsLabel.setFont(myFont);
-        hitPointsLabel.setBounds(450, 180, 160, 30);  // was 100
+        hitPointsLabel.setBounds(600, 190, 160, 30);
 
         hitPointsField = new JTextField();
         hitPointsField.setEditable(false);
-        hitPointsField.setBounds(650, 180, 60, 30);
+        hitPointsField.setBounds(800, 190, 80, 30);
 
         defenceLabel = new JLabel("Defence");
         defenceLabel.setForeground(new Color(128, 0, 128));
         defenceLabel.setFont(myFont);
-        defenceLabel.setBounds(450, 220, 160, 30);  // was 100
+        defenceLabel.setBounds(600, 230, 160, 30);
 
         defenceField = new JTextField();
         defenceField.setEditable(false);
-        defenceField.setBounds(650, 220, 60, 30);
+        defenceField.setBounds(800, 230, 80, 30);
 
         agilityLabel = new JLabel("Agility");
         agilityLabel.setForeground(new Color(128, 0, 128));
         agilityLabel.setFont(myFont);
-        agilityLabel.setBounds(450, 260, 160, 30);  // was 100
+        agilityLabel.setBounds(600, 270, 160, 30);
 
         agilityField = new JTextField();
         agilityField.setEditable(false);
-        agilityField.setBounds(650, 260, 60, 30);
+        agilityField.setBounds(800, 270, 80, 30);
 
         baseAttackLabel = new JLabel("Base Attack");
         baseAttackLabel.setForeground(new Color(128, 0, 128));
         baseAttackLabel.setFont(myFont);
-        baseAttackLabel.setBounds(450, 300, 160, 30);  // was 150
+        baseAttackLabel.setBounds(600, 310, 160, 30);
 
         baseAttackField = new JTextField();
         baseAttackField.setEditable(false);
-        baseAttackField.setBounds(650, 300, 60, 30);
+        baseAttackField.setBounds(800, 310, 80, 30);
 
+        rerollBut = new JButton("Reroll");
+        rerollBut.setFont(myFont);
+        rerollBut.setBounds(650, 360, 180, 40);
+
+        // ===== WEAPON STATS =====
         weaponStats = new JLabel("Weapon Stats");
         weaponStats.setForeground(new Color(128, 0, 128));
         weaponStats.setFont(myFont);
-        weaponStats.setBounds(500, 410, 200, 30);
+        weaponStats.setBounds(600, 540, 250, 30);
 
         attackModLabel = new JLabel("Attack Mod");
         attackModLabel.setForeground(new Color(128, 0, 128));
         attackModLabel.setFont(myFont);
-        attackModLabel.setBounds(450, 450, 160, 30);  // was 150
+        attackModLabel.setBounds(600, 580, 160, 30);
 
         attackModField = new JTextField();
         attackModField.setEditable(false);
-        attackModField.setBounds(650, 450, 60, 30);
+        attackModField.setBounds(800, 580, 80, 30);
 
         weightLabel = new JLabel("Weight");
         weightLabel.setForeground(new Color(128, 0, 128));
         weightLabel.setFont(myFont);
-        weightLabel.setBounds(450, 490, 160, 30);  // was 150
+        weightLabel.setBounds(600, 620, 160, 30);
 
         weightField = new JTextField();
         weightField.setEditable(false);
-        weightField.setBounds(650, 490, 60, 30);
-
-        rerollBut = new JButton("Reroll");
-        rerollBut.setFont(myFont);
-        rerollBut.setBounds(490, 350, 150, 40);
+        weightField.setBounds(800, 620, 80, 30);
 
         startBattleBut = new JButton("Start Battle");
         startBattleBut.setFont(myFont);
-        startBattleBut.setBounds(490, 540, 200, 40);
+        startBattleBut.setBounds(650, 680, 200, 50);
 
-        // ===== Add all components =======================================
+        // ===== ADD COMPONENTS =====
         add(chooseLabel);
         add(enterNameLabel);
         add(enterNameField);
@@ -230,6 +244,8 @@ public class ChoosePanel extends JPanel {
         add(swordBut);
         add(hammerBut);
         add(infoWeaponArea);
+        add(characterImageLabel);
+        add(weaponImageLabel);
         add(characterStatsLabel);
         add(hitPointsLabel);
         add(hitPointsField);
@@ -239,16 +255,46 @@ public class ChoosePanel extends JPanel {
         add(agilityField);
         add(baseAttackLabel);
         add(baseAttackField);
+        add(rerollBut);
         add(weaponStats);
         add(attackModLabel);
         add(attackModField);
         add(weightLabel);
         add(weightField);
-        add(rerollBut);
         add(startBattleBut);
 
         rollStats();
         rerollBut.addActionListener(e -> rollStats());
+
+        clericBut.addActionListener(e -> {
+            infoCharArea.setText(Cleric.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(getClericPic(), 100, 100));
+        });
+
+        warriorBut.addActionListener(e -> {
+            infoCharArea.setText(Warrior.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(getWarriorPic(), 100, 100));
+        });
+
+        wizardBut.addActionListener(e -> {
+            infoCharArea.setText(Wizard.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(getWizardPic(), 100, 100));
+        });
+
+        swordBut.addActionListener(e -> {
+            infoWeaponArea.setText(Sword.getWeaponDescription());
+            weaponImageLabel.setIcon(scaleImage(getSwordPic(), 100, 100));
+        });
+
+        hammerBut.addActionListener(e -> {
+            infoWeaponArea.setText(Hammer.getWeaponDescription());
+            weaponImageLabel.setIcon(scaleImage(getHammerPic(), 100, 100));
+        });
+
+        daggerBut.addActionListener(e -> {
+            infoWeaponArea.setText(Dagger.getWeaponDescription());
+            weaponImageLabel.setIcon(scaleImage(getDaggerPic(), 100, 100));
+        });
     }
 
     // [0]=HP, [1]=Defense, [2]=Agility, [3]=BaseAttack, [4]=WeaponAttack, [5]=WeaponWeight
@@ -262,7 +308,28 @@ public class ChoosePanel extends JPanel {
                 Integer.parseInt(weightField.getText())};
         return stats;
     }
-
+    private static ImageIcon scaleImage(ImageIcon icon, int width, int height) {
+        Image scaled = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaled);
+    }
+public static ImageIcon getWarriorPic() {
+    return new ImageIcon(ChoosePanel.class.getResource("/images/fighter.png"));
+}
+    public static ImageIcon getClericPic() {
+        return new ImageIcon(ChoosePanel.class.getResource("/images/dwarf.png"));
+    }
+    public static ImageIcon getWizardPic() {
+        return new ImageIcon(ChoosePanel.class.getResource("/images/wizard.png"));
+    }
+    public static ImageIcon getDaggerPic() {
+        return new ImageIcon(ChoosePanel.class.getResource("/images/dagger.png"));
+    }
+    public static ImageIcon getHammerPic() {
+        return new ImageIcon(ChoosePanel.class.getResource("/images/hammer.png"));
+    }
+    public static ImageIcon getSwordPic() {
+        return new ImageIcon(ChoosePanel.class.getResource("/images/sword.png"));
+    }
     public static String getCharacterType() {
         if (warriorBut.isSelected()) return "Warrior";
         else if (wizardBut.isSelected()) return "Wizard";

@@ -4,15 +4,15 @@ import GUI.*;
 import javax.swing.*;
 
 public class Warrior extends PlayerCharacter {
-    private ImageIcon warriorPic;
+    private static ImageIcon warriorPic;
 
     //Constructors
     public Warrior(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
         super(name, hitPoints, defense, agility, baseAttack, weapon);
-        warriorPic = new ImageIcon(this.getClass().getResource("/Images/fighter.png"));
+        warriorPic = new ImageIcon(this.getClass().getResource("/images/fighter.png"));
     }
 
-    public ImageIcon getWarriorPic() {
+    public static ImageIcon getWarriorPic() {
         return warriorPic;
     }
 
@@ -55,8 +55,7 @@ public class Warrior extends PlayerCharacter {
 //        return null;
 //    }
 
-    @Override
-    public String getCharacterInformString() {
+    public static String getCharacterInformString() {
         return "Fighters are often human.Have higher HP and defence but low agility.";
     }
 }

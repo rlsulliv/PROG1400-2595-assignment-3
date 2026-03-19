@@ -25,13 +25,13 @@ public class SplashPanel extends JPanel {
         titleLabel = new JLabel("RPG Character Creator");
         titleLabel.setFont(myFont);
         titleLabel.setForeground(new Color(128, 0, 128));
-        titleLabel.setBounds(250, 100,400, 40);
+        titleLabel.setBounds(390, 100,400, 40);
 
         ImageIcon image = new ImageIcon(this.getClass().getResource("/Images/dd_1400x.jpg"));
 
         homePagePic = new JLabel(image);
         homePagePic.setFont(myFont);
-        homePagePic.setBounds(200, 160, 400, 300);
+        homePagePic.setBounds(300, 160, 400, 300);
 
 
         startBut = new JButton("Build a Character");
@@ -39,7 +39,7 @@ public class SplashPanel extends JPanel {
         startBut.setBackground(new Color(128, 0, 128));
         startBut.setForeground(Color.WHITE);
         startBut.setFocusPainted(false);
-        startBut.setBounds(250, 500, 300, 50);
+        startBut.setBounds(350, 500, 300, 50);
 
         //Add all controls to Panel
         add(titleLabel);

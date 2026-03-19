@@ -4,16 +4,16 @@ import GUI.*;
 import javax.swing.*;
 
 public class Cleric extends PlayerCharacter {
-    private ImageIcon clericPic;
+    private static ImageIcon clericPic;
 
     //Constructor
     public Cleric(String name, int hitPoints, int defense, int agility, int baseAttack, Weapon weapon) {
         super(name, hitPoints, defense, agility, baseAttack, weapon);
 
-        clericPic = new ImageIcon(this.getClass().getResource("/Images/dwarf.png"));
+        clericPic = new ImageIcon(this.getClass().getResource("/images/dwarf.png"));
     }
 
-    public ImageIcon getClericPic() {
+    public static ImageIcon getClericPic() {
         return clericPic;
     }
 
@@ -49,7 +49,7 @@ public class Cleric extends PlayerCharacter {
                 monsStats[3]);
     }
 
-    public String getCharacterInformString() {
+    public static String getCharacterInformString() {
         return "Clerics are usually dwarf. Have higher defense but low agility ";
     }
 

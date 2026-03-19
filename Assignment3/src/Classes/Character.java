@@ -13,11 +13,11 @@ public abstract class Character {
 
     public Character(String name, int attack, int weight, int agility, int hitPoints) {
         this.name = name;
-        int[] stats = ChoosePanel.getTextFieldsData();
-        this.setBaseAttack(stats[0]);
-        this.setDefense(stats[1]);
-        this.setAgility(stats[2]);
-        this.setHitPoints(stats[3]);
+//        int[] stats = ChoosePanel.getTextFieldsData();
+//        this.setBaseAttack(stats[0]);
+//        this.setDefense(stats[1]);
+//        this.setAgility(stats[2]);
+//        this.setHitPoints(stats[3]);
     }
 
 //    Getters & Setters:
@@ -62,7 +62,7 @@ public abstract class Character {
     }
 
     //Define a getCharacterInformString() method, to be inherited by subclasses
-    public abstract String getCharacterInformString();
+//    public abstract String getCharacterInformString();
 
     @Override
     public String toString() {
