@@ -29,6 +29,19 @@ public class MainFrame extends JFrame {
                 chooseScreen.setVisible(true); }
         });
 
+        JButton startBattleButton = chooseScreen.getStartBattleBut();
+        startBattleButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                chooseScreen.setVisible(false);
+                displayScreen.setVisible(true);
+            }
+        });
+
+        displayScreen.getPlayAgainBut().addActionListener(e -> {
+            displayScreen.setVisible(false);
+            chooseScreen.setVisible(true);
+        });
+
         add(splashPanel);
         add(chooseScreen);
         add(displayScreen);

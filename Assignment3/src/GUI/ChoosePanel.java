@@ -6,13 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-import static Classes.Sword.getSwordPic;
-
 
 public class ChoosePanel extends JPanel {
     private JLabel chooseLabel;
     private JLabel enterNameLabel;
-    private JTextField enterNameField;
+    private static JTextField enterNameField;
     private JLabel characterTypeLabel;
 
     private static JRadioButton warriorBut;
@@ -51,6 +49,14 @@ public class ChoosePanel extends JPanel {
     private JLabel characterImageLabel;
     private JLabel weaponImageLabel;
 
+    public static JTextField getEnterNameField() {
+        return enterNameField;
+    }
+
+    public static void setEnterNameField(JTextField enterNameField) {
+        ChoosePanel.enterNameField = enterNameField;
+    }
+
     public JButton getStartBattleBut() {
         return startBattleBut;
     }
@@ -75,8 +81,8 @@ public class ChoosePanel extends JPanel {
         enterNameLabel.setFont(myFont);
         enterNameLabel.setForeground(new Color(128, 0, 128));
 
-        enterNameField = new JTextField(20);
-        enterNameField.setBounds(210, 100, 150, 30);
+        setEnterNameField(new JTextField(20));
+        getEnterNameField().setBounds(210, 100, 150, 30);
 
         characterTypeLabel = new JLabel("Character Type");
         characterTypeLabel.setFont(myFont);
@@ -233,7 +239,7 @@ public class ChoosePanel extends JPanel {
         // ===== ADD COMPONENTS =====
         add(chooseLabel);
         add(enterNameLabel);
-        add(enterNameField);
+        add(getEnterNameField());
         add(characterTypeLabel);
         add(warriorBut);
         add(wizardBut);
