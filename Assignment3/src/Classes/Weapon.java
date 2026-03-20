@@ -28,4 +28,8 @@ public abstract class Weapon {
 
     public abstract String getWeaponInformString();
 
+    public String getWeaponStats() {
+        return "\tAttack Mod: " + attack + "\t\tWeight: " + weight;
+    }
+
 }

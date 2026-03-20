@@ -18,6 +18,8 @@ public abstract class PlayerCharacter extends Character {
         this.weapon = weapon;
     }
 
+    public abstract String getCharacterInformString();
+
     @Override
     public String toString() {
         return "My name is " + super.getName() + ". My weapon is " + (weapon != null ? weapon.getWeaponInformString() : "none") + ".";

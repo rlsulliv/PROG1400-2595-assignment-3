@@ -13,11 +13,7 @@ public class Hammer extends Weapon {
         hammerPic = new ImageIcon(this.getClass().getResource("/images/hammer.png"));
     }
 
-    public static ImageIcon getDaggerPic() {
-        return hammerPic;
-    }
-
-    public ImageIcon getHammerPic() {
+    public static ImageIcon getHammerPic() {
         return hammerPic;
     }
 
@@ -32,9 +28,8 @@ public class Hammer extends Weapon {
                 "However, it is a heavy weapon and has a slow attack speed. ";
     }
 
-    public static String getWeaponDescription() {
-        return "The hammer is a weapon with powerful attack power. " +
-                "A single attack can create a high hit point. " +
-                "However, it is a heavy weapon and has a slow attack speed. ";
+    @Override
+    public String getWeaponStats() {
+        return "Hammer " + super.getWeaponStats();
     }
 }

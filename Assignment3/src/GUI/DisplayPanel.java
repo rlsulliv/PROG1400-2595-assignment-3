@@ -1,6 +1,6 @@
 package GUI;
 
-import Classes.Monster;
+import Classes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +41,7 @@ public class DisplayPanel extends JPanel {
         playerImage.setBounds(220, 100, 200, 200);
 
         monsterImage = new JLabel();
-        monsterImage.setBounds(650, 100, 200, 200);
+        monsterImage.setBounds(710, 100, 200, 200);
 
         infoArea = new JTextArea();
         infoArea.setBounds(100, 300, 800, 360);
@@ -65,58 +65,39 @@ public class DisplayPanel extends JPanel {
 
 
 }
-    public void getPlayerAndMonsterInfo() {
-        playerLabel.setText(ChoosePanel.getCharacterType());
-        monsterLabel.setText(ChoosePanel.getMonsterName());
+    public void updateBattleSummary(PlayerCharacter p, Monster m) {
+        // resultsTextArea is the JTextArea on your battle summary screen
+        infoArea.setText(p.toString());
+        infoArea.append("\n\n--- VS ---\n\n");
+        infoArea.append(m.toString());
 
-        if (ChoosePanel.getCharacterType().equalsIgnoreCase("Warrior")) {
-            playerImage.setIcon(ChoosePanel.getWarriorPic());
-        } else if (ChoosePanel.getCharacterType().equalsIgnoreCase("Cleric")) {
-            playerImage.setIcon(ChoosePanel.getClericPic());
-        } else if (ChoosePanel.getCharacterType().equalsIgnoreCase("Wizard")) {
-            playerImage.setIcon(ChoosePanel.getWizardPic());
+        playerLabel.setText(p.getName());
+        monsterLabel.setText(m.getName());
+
+        switch (p) {
+            case Warrior warrior -> playerImage.setIcon(Warrior.getWarriorPic());
+            case Cleric cleric -> playerImage.setIcon(Cleric.getClericPic());
+            case Wizard wizard -> playerImage.setIcon(Wizard.getWizardPic());
+            default -> {
+            }
         }
-        monsterImage.setIcon(Monster.getMonsterPic());
 
-        int[] stats = ChoosePanel.getTextFieldsData();
-        int[] monsterStats = ChoosePanel.getSelectMonster();
-
-        infoArea.setText(
-                "Player: " + ChoosePanel.getEnterNameField().getText() + "\n" +
-                        "-------------------\n" +
-                        "Class: " + ChoosePanel.getCharacterType() + "\n" +
-                        "HP: " + stats[0] + "\tDefense: " + stats[1] +
-                        "\tAgility: " + stats[2] + "\tBase Attack: " + stats[3] + "\n" +
-                        "Weapon: " + ChoosePanel.getWeaponType() +
-                        "\tWeight: " + stats[5] + "\tAttack Mod: " + stats[4] + "\n\n" +
-                        "Monster: " + ChoosePanel.getMonsterName() + "\n" +
-                        "-------------------\n" +
-                        "HP: " + monsterStats[0] + "\tDefense: " + monsterStats[1] +
-                        "\tAgility: " + monsterStats[2] + "\tBase Attack: " + monsterStats[3]
-        );
+        switch(m) {
+            case Goblin goblin -> monsterImage.setIcon(Goblin.getGoblinPic());
+            case Orc orc -> monsterImage.setIcon(Orc.getOrcPic());
+            case Troll troll -> monsterImage.setIcon(Troll.getTrollPic());
+            default -> {
+            }
+        }
     }
+
     @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
-
-        if (visible) {
-            getPlayerAndMonsterInfo();
-        }
-    }
-
-    public static String getPlayerName() {
-        return ChoosePanel.getEnterNameField().getText();
     }
 
     public JButton getPlayAgainBut() {
         return playAgainBut;
     }
 
-    public void setPlayAgainBut(JButton playAgainBut) {
-        this.playAgainBut = playAgainBut;
-    }
-
-    public void loadBattleData() {
-
-    }
 }

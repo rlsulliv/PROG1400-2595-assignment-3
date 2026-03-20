@@ -273,34 +273,40 @@ public class ChoosePanel extends JPanel {
         rerollBut.addActionListener(e -> rollStats());
 
         clericBut.addActionListener(e -> {
-            infoCharArea.setText(Cleric.getCharacterInformString());
-            characterImageLabel.setIcon(scaleImage(getClericPic(), 100, 100));
+            Cleric temp = new Cleric("Temp", 0, 0, 0, 0, null);
+            infoCharArea.setText(temp.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(Cleric.getClericPic(), 100, 100));
         });
 
         warriorBut.addActionListener(e -> {
-            infoCharArea.setText(Warrior.getCharacterInformString());
-            characterImageLabel.setIcon(scaleImage(getWarriorPic(), 100, 100));
+            Warrior temp = new Warrior("Temp", 0, 0, 0, 0, null);
+            infoCharArea.setText(temp.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(Warrior.getWarriorPic(), 100, 100));
         });
 
         wizardBut.addActionListener(e -> {
-            infoCharArea.setText(Wizard.getCharacterInformString());
-            characterImageLabel.setIcon(scaleImage(getWizardPic(), 100, 100));
-        });
-
-        swordBut.addActionListener(e -> {
-            infoWeaponArea.setText(Sword.getWeaponDescription());
-            weaponImageLabel.setIcon(scaleImage(getSwordPic(), 100, 100));
-        });
-
-        hammerBut.addActionListener(e -> {
-            infoWeaponArea.setText(Hammer.getWeaponDescription());
-            weaponImageLabel.setIcon(scaleImage(getHammerPic(), 100, 100));
+            Wizard temp = new Wizard("Temp", 0, 0, 0, 0, null);
+            infoCharArea.setText(temp.getCharacterInformString());
+            characterImageLabel.setIcon(scaleImage(Wizard.getWizardPic(), 100, 100));
         });
 
         daggerBut.addActionListener(e -> {
-            infoWeaponArea.setText(Dagger.getWeaponDescription());
-            weaponImageLabel.setIcon(scaleImage(getDaggerPic(), 100, 100));
+            Dagger temp = new Dagger(0, 0);
+            infoWeaponArea.setText(temp.getWeaponInformString());
+            weaponImageLabel.setIcon(scaleImage(Dagger.getDaggerPic(), 100, 100));
         });
+        swordBut.addActionListener(e -> {
+            Sword temp = new Sword(0, 0);
+            infoWeaponArea.setText(temp.getWeaponInformString());
+            weaponImageLabel.setIcon(scaleImage(Sword.getSwordPic(), 100, 100));
+        });
+
+        hammerBut.addActionListener(e -> {
+            Hammer temp = new Hammer(0, 0);
+            infoWeaponArea.setText(temp.getWeaponInformString());
+            weaponImageLabel.setIcon(scaleImage(Hammer.getHammerPic(), 100, 100));
+        });
+
     }
 
     // [0]=HP, [1]=Defense, [2]=Agility, [3]=BaseAttack, [4]=WeaponAttack, [5]=WeaponWeight
@@ -317,37 +323,6 @@ public class ChoosePanel extends JPanel {
     private static ImageIcon scaleImage(ImageIcon icon, int width, int height) {
         Image scaled = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
-    }
-public static ImageIcon getWarriorPic() {
-    return new ImageIcon(ChoosePanel.class.getResource("/images/fighter.png"));
-}
-    public static ImageIcon getClericPic() {
-        return new ImageIcon(ChoosePanel.class.getResource("/images/dwarf.png"));
-    }
-    public static ImageIcon getWizardPic() {
-        return new ImageIcon(ChoosePanel.class.getResource("/images/wizard.png"));
-    }
-    public static ImageIcon getDaggerPic() {
-        return new ImageIcon(ChoosePanel.class.getResource("/images/dagger.png"));
-    }
-    public static ImageIcon getHammerPic() {
-        return new ImageIcon(ChoosePanel.class.getResource("/images/hammer.png"));
-    }
-    public static ImageIcon getSwordPic() {
-        return new ImageIcon(ChoosePanel.class.getResource("/images/sword.png"));
-    }
-    public static String getCharacterType() {
-        if (warriorBut.isSelected()) return "Warrior";
-        else if (wizardBut.isSelected()) return "Wizard";
-        else if (clericBut.isSelected()) return "Cleric";
-        else return "Unknown";
-    }
-
-    public static String getWeaponType(){
-        if (daggerBut.isSelected()) return "Dagger";
-        else if (swordBut.isSelected()) return "Sword";
-        else if (hammerBut.isSelected()) return "Hammer";
-        else return "Unknown";
     }
 
     static Random randomInt = new Random();
@@ -367,20 +342,42 @@ public static ImageIcon getWarriorPic() {
         attackModField.setText(String.valueOf(attackMod));
         weightField.setText(String.valueOf(weight));
     }
-    private static String[] monsterNames = {"Goblin", "Orc", "Dragon", "Skeleton", "Troll"};
-    private static String monsterName = monsterNames[randomInt.nextInt(monsterNames.length)];
-    private static int[] monsterStats = new int[]{
-            30 + randomInt.nextInt(71),
-            3 + randomInt.nextInt(21),
-            3 + randomInt.nextInt(21),
-            3 + randomInt.nextInt(21)
+    public Monster createMonster() {
+            int hp = 30 + randomInt.nextInt(71);
+            int defence = 3 + randomInt.nextInt(21);
+            int agility = 3 + randomInt.nextInt(21);
+            int attack = 3 + randomInt.nextInt(21);
+
+            int pick = randomInt.nextInt(3);
+
+            if (pick == 0) {
+                return new Orc(hp, defence, agility, attack);
+            } else if (pick == 1) {
+                return new Goblin(hp, defence, agility, attack);
+            } else {
+                return new Troll(hp, defence, agility, attack);
+            }
     };
 
-    public static int[] getSelectMonster() {
-        return monsterStats;
-    }
+    PlayerCharacter createPlayer() {
+        String name = enterNameField.getText();
+        int[] stats = getTextFieldsData();
 
-    public static String getMonsterName() {
-        return monsterName;
+        Weapon selectedWeapon;
+        if (daggerBut.isSelected()) {
+            selectedWeapon = new Dagger(stats[4], stats[5]);
+        } else if (swordBut.isSelected()) {
+            selectedWeapon = new Sword(stats[4], stats[5]);
+        } else {
+            selectedWeapon = new Hammer(stats[4], stats[5]);
+        }
+
+        if (clericBut.isSelected()) {
+            return new Cleric(name, stats[0], stats[1], stats[2], stats[3], selectedWeapon);
+        } else if (warriorBut.isSelected()) {
+            return new Warrior(name, stats[0], stats[1], stats[2], stats[3], selectedWeapon);
+        } else {
+            return new Wizard(name, stats[0], stats[1], stats[2], stats[3], selectedWeapon);
+        }
     }
 }

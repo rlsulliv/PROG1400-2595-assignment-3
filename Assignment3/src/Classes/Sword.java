@@ -13,11 +13,6 @@ public class Sword extends Weapon {
         swordPic = new ImageIcon(this.getClass().getResource("/images/sword.png"));
     }
 
-    public static String getWeaponDescription() {
-        return "A sword is a good all-round weapon. " +
-                "It is not too heavy and inflicts a lot of damage.";
-    }
-
     public static ImageIcon getSwordPic() {
         return swordPic;
     }
@@ -29,5 +24,10 @@ public class Sword extends Weapon {
     public String getWeaponInformString() {
         return "A sword is a good all-round weapon. " +
                 "It is not too heavy and inflicts a lot of damage.";
+    }
+
+    @Override
+    public String getWeaponStats() {
+        return "Sword " + super.getWeaponStats();
     }
 }

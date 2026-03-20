@@ -13,12 +13,6 @@ public class Dagger extends Weapon {
         daggerPic = new ImageIcon(this.getClass().getResource("/images/dagger.png"));
     }
 
-    public static String getWeaponDescription() {
-        return "A dagger is a light and fast weapon. " +
-                "Classes with high agility are very effective when using this weapon. " +
-                "It can maintain fast attack speed, but the increase in additional attack power is not high..";
-    }
-
     public static ImageIcon getDaggerPic() {
         return daggerPic;
     }
@@ -29,9 +23,11 @@ public class Dagger extends Weapon {
 
     @Override
     public String getWeaponInformString() {
-
         return "A dagger is a light and fast weapon. " +
-                "Classes with high agility are very effective when using this weapon. " +
                 "It can maintain fast attack speed, but the increase in additional attack power is not high..";
+    }
+    @Override
+    public String getWeaponStats() {
+        return "Dagger " + super.getWeaponStats();
     }
 }

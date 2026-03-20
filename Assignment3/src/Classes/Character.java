@@ -11,13 +11,12 @@ public abstract class Character {
     private int agility;
     private int hitPoints;
 
-    public Character(String name, int attack, int weight, int agility, int hitPoints) {
+    public Character(String name, int hitPoints, int defense, int agility, int baseAttack) {
         this.name = name;
-//        int[] stats = ChoosePanel.getTextFieldsData();
-//        this.setBaseAttack(stats[0]);
-//        this.setDefense(stats[1]);
-//        this.setAgility(stats[2]);
-//        this.setHitPoints(stats[3]);
+        this.hitPoints = hitPoints;
+        this.defense = defense;
+        this.agility = agility;
+        this.baseAttack = baseAttack;
     }
 
 //    Getters & Setters:

@@ -17,43 +17,23 @@ public class Cleric extends PlayerCharacter {
         return clericPic;
     }
 
-    public void setClericPic(ImageIcon clericPic) {
-        this.clericPic = clericPic;
-    }
-
+    @Override
     public String toString() {
-        int[] stats = ChoosePanel.getTextFieldsData();
-        int[] monsStats = ChoosePanel.getSelectMonster();
-        String monsterName = ChoosePanel.getMonsterName();
-        return String.format("Player: %-10s\n---------------------" +
-                        "\nClass: %-10s" +
-                        "\nHP: %-3d\tDefense: %-3d\tAgility: %-3d\tBase Attack: %-3d" +
-                        "\nWeapon: %-13s\tWeight: %-3d\tAttack Mod: %-3d" +
-                        "\n\n" +
-
-                        "Monster: %-10s\n---------------------" +
-                        "\nHP: %-3d\tDefense: %-3d\tAgility: %-3d\tBase Attack: %-3d",
-                super.getName(),
-                ChoosePanel.getCharacterType(),
-                stats[0],
-                stats[1],
-                stats[2],
-                stats[3],
-                ChoosePanel.getWeaponType(),
-                stats[5],
-                stats[4],
-                monsterName,
-                monsStats[0],
-                monsStats[1],
-                monsStats[2],
-                monsStats[3]);
+        // Use the object's own getters instead of ChoosePanel
+        return String.format("Player: %s\n" +
+                        "\nClass: Cleric" +
+                        "\nHP: %d\tDefense: %d\tAgility: %d\tBase Attack: %d" +
+                        "\nWeapon: %s",
+                getName(),
+                getHitPoints(),
+                getDefense(),
+                getAgility(),
+                getBaseAttack(),
+                getWeapon().getWeaponStats());
     }
 
-    public static String getCharacterInformString() {
+    public String getCharacterInformString() {
         return "Clerics are usually dwarf. Have higher defense but low agility ";
     }
 
-    public String getWeaponInformString() {
-        return null;
-    }
 }
