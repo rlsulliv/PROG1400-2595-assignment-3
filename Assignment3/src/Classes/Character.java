@@ -60,9 +60,6 @@ public abstract class Character {
         this.hitPoints = hitPoints;
     }
 
-    //Define a getCharacterInformString() method, to be inherited by subclasses
-//    public abstract String getCharacterInformString();
-
     @Override
     public String toString() {
         return "My name is " + name + ".";

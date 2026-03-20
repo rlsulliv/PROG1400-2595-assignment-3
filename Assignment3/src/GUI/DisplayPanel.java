@@ -47,6 +47,7 @@ public class DisplayPanel extends JPanel {
         infoArea.setBounds(100, 300, 800, 360);
         infoArea.setEditable(false);
         infoArea.setFont(myFont);
+        infoArea.setForeground(new Color(128, 0, 128));
         infoArea.setLineWrap(true);
         infoArea.setWrapStyleWord(true);
 
