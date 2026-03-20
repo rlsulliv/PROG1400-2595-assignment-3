@@ -12,6 +12,7 @@ public class ChoosePanel extends JPanel {
     private JLabel enterNameLabel;
     private static JTextField enterNameField;
     private JLabel characterTypeLabel;
+    private JButton clearNameBut;
 
     private static JRadioButton warriorBut;
     private static JRadioButton wizardBut;
@@ -83,6 +84,9 @@ public class ChoosePanel extends JPanel {
 
         setEnterNameField(new JTextField(20));
         getEnterNameField().setBounds(210, 100, 150, 30);
+
+        clearNameBut = new JButton("Clear Name");
+        clearNameBut.setBounds(400, 100, 150, 30);
 
         characterTypeLabel = new JLabel("Character Type");
         characterTypeLabel.setFont(myFont);
@@ -240,6 +244,7 @@ public class ChoosePanel extends JPanel {
         add(chooseLabel);
         add(enterNameLabel);
         add(getEnterNameField());
+        add(clearNameBut);
         add(characterTypeLabel);
         add(warriorBut);
         add(wizardBut);
@@ -306,6 +311,8 @@ public class ChoosePanel extends JPanel {
             infoWeaponArea.setText(temp.getWeaponInformString());
             weaponImageLabel.setIcon(scaleImage(Hammer.getHammerPic(), 100, 100));
         });
+
+        clearNameBut.addActionListener(e -> enterNameField.setText(""));
 
     }
 
